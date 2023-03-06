@@ -1,48 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import logo from "./Img/logo.png";
-import { useApi } from "./Hooks/useApi";
 import { Gens } from "./Constants.js";
+import { useApi } from "./Hooks/useApi.js";
 
 function App() {
-  const [hints, setHints] = useState({});
+  const { info, hints, setNewRequest, newRequest } = useApi();
+  const pokemonImg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${info.id}.png`;
+
   const [input, setInput] = useState("");
   const [score, setScore] = useState(0);
   const [best, setBest] = useState(5);
   const [statusImg, setStatusImg] = useState(false);
-  const { getPokemonData, info } = useApi();
-
-  useEffect(() => {
-    const randomId = Math.floor(Math.random() * 898) + 1;
-
-    // TODO
-    // const hintsHandler = () => {
-    //   let types = "";
-    //   if (info.types.length === 1) {
-    //     types = info.types[0].type.name;
-    //   } else {
-    //     types = info.types[0].type.name + " and " + info.types[1].type.name;
-    //   }
-
-    //   let generation = Gens.filter(
-    //     (gen) => info.id >= gen.start && info.id <= gen.end
-    //   )[0].name;
-
-    //   let hints = {
-    //     letters: info.name.length,
-    //     gen: generation,
-    //     type: types,
-    //   };
-
-    //   return hints;
-    // };
-
-    const getData = async () => {
-      await getPokemonData(6);
-      // TODO setHints(hintsHandler());
-    };
-    getData();
-  }, []);
 
   const answerButtonHandler = () => {
     if (input === info.name) {
@@ -55,16 +24,9 @@ function App() {
   };
 
   const newPokemonButtonHandler = () => {
-    console.log(info);
-    console.log(info.name);
-    console.log(info.types.length);
-    console.log(info.types[0].type.name);
-    console.log(info.types[1].type.name);
-    console.log(Gens);
-    console.log(
-      Gens.filter((gen) => info.id >= gen.start && info.id <= gen.end)
-    );
-    console.log(hints);
+    setNewRequest(!newRequest);
+    setStatusImg(false);
+    setInput("");
   };
 
   return (
@@ -81,7 +43,7 @@ function App() {
           <h3>¿Who's that pokemon?</h3>
           <img
             className={"pokemon-img " + (statusImg ? "show" : "hiden")}
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/156.png"
+            src={pokemonImg}
             alt="Pokemon"
           />
           {statusImg ? <p className="pokemon-name">{input}</p> : null}
@@ -121,7 +83,7 @@ function App() {
             />
           </div>
           <button className="form-button" onClick={newPokemonButtonHandler}>
-            Next!
+            Skip!
           </button>
         </div>
       </div>

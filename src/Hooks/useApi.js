@@ -1,23 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { searchPokemon } from "../ApiCall";
+import { hintsHandler } from "../Logic/Hints";
 
 export const useApi = () => {
-  const [info, setInfo] = useState();
+  const [hints, setHints] = useState({});
+  const [info, setInfo] = useState({});
+  const [newRequest, setNewRequest] = useState(false);
 
-  const getPokemonData = async (idPokedex) => {
-    try {
-      const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${idPokedex}`
-      );
-      const data = await response.json();
-      setInfo(data);
-      console.log(data);
-    } catch (error) {
-      return console.log(error);
-    }
+  const getData = async (id) => {
+    const data = await searchPokemon(id);
+    setInfo(data);
+    setHints(await hintsHandler(data));
   };
+  // TODO see why its call the api twice
+  useEffect(() => {
+    let randomPokemon = Math.floor(Math.random() * 898) + 1;
+    getData(randomPokemon);
+  }, [newRequest]);
 
   return {
-    getPokemonData,
+    hints,
     info,
+    setNewRequest,
+    newRequest,
   };
 };
