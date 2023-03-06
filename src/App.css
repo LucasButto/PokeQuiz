@@ -1,0 +1,167 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(31, 31, 36);
+}
+
+.app-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  width: 100%;
+}
+
+.score {
+  position: absolute;
+  right: 0;
+  margin-right: 50px;
+  color: beige;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.logo {
+  height: 150px;
+  width: 400px;
+}
+
+.quiz-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  width: 100%;
+  padding: 30px;
+  gap: 20px;
+}
+.img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  border-radius: 30px;
+  background-color: rgb(255, 204, 1);
+}
+
+.img-container > h3 {
+  position: absolute;
+  margin-top: -400px;
+}
+
+.pokemon-img {
+  height: 300px;
+  width: 300px;
+}
+
+.hiden {
+  filter: brightness(0);
+}
+
+.show {
+  animation: show 1s ease-in-out;
+}
+
+@keyframes show {
+  0% {
+    filter: brightness(0);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  gap: 20px;
+  border-radius: 30px;
+  background-color: rgb(54, 95, 172);
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: rgb(158, 12, 12);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+  padding: 30px;
+}
+
+.form-input {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 40px;
+  padding: 5px 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(31, 31, 36);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgb(213, 213, 213);
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+.form-button {
+  width: 60px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(16, 24, 68);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgb(213, 213, 213);
+}
+
+.form-button:hover {
+  cursor: pointer;
+  background-color: rgb(32, 45, 116);
+}
+
+.hints {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  padding: 10px;
+  gap: 20px;
+}
+
+.hint {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: rgb(31, 31, 36);
+  color: rgb(213, 213, 213);
+  font-size: 1.2rem;
+  font-weight: 500;
+  width: 80%;
+  height: 40px;
+  padding: 5px;
+}
