@@ -102,7 +102,7 @@ function App() {
           <p className="best-score">Personal best: {best}</p>
         </div>
       </header>
-      <div className="quiz-container">
+      <main className="quiz-container">
         <div className="img-container">
           <h3>¿Who's that pokemon?</h3>
           {info ? (
@@ -114,7 +114,6 @@ function App() {
           ) : (
             <h2>Loading...</h2>
           )}
-
           {statusImg ? <p className="pokemon-name">{info.name}</p> : null}
         </div>
         <div className="options-container">
@@ -196,7 +195,7 @@ function App() {
             </button>
           </div>
         </div>
-      </div>
+      </main>
       <div className={modalStyles}>
         <div className="modal-content">
           <div className="modal-header">
