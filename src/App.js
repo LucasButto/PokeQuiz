@@ -23,6 +23,7 @@ function App() {
   );
 
   useEffect(() => {
+    //TODO save in LocalStorage
     if (score > best) {
       setBest(score);
     }
