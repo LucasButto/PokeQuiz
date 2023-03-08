@@ -29,33 +29,33 @@ function App() {
   }, [score, best]);
 
   const answerButtonHandler = () => {
-    if (input === info.name) {
-      setScore(score + 1);
-      setStatusImg(true);
-      setNextButtonStyles("form-button");
-      setSkipButton(false);
-    } else {
-      setTrys(trys + 1);
-      setStatusImg(false);
-      setInput("");
-    }
+    if (input !== "") {
+      if (statusImg === false) {
+        if (input.toLowerCase() === info.name.toLowerCase()) {
+          setScore(score + 1);
+          setStatusImg(true);
+          setNextButtonStyles("form-button");
+          setSkipButton(false);
+        } else {
+          setTrys(trys + 1);
+          setStatusImg(false);
+          setInput("");
+        }
 
-    if (trys >= 3) {
-      setTrys(0);
-      setScore(0);
-      setStatusImg(true);
-      setInput("");
-      setInputStyles("form-input input-disabled");
+        if (trys >= 3) {
+          setTrys(0);
+          setScore(0);
+          setStatusImg(true);
+          setInput("");
+          setInputStyles("form-input input-disabled");
+        }
+      }
     }
   };
 
   const enterPressed = (e) => {
     if (e.key === "Enter") {
-      if (input !== "") {
-        if (statusImg === false) {
-          answerButtonHandler();
-        }
-      }
+      answerButtonHandler();
     }
   };
 
@@ -281,6 +281,7 @@ function App() {
                   <label htmlFor="gen8">Galar</label>
                 </div>
               </div>
+              <button className="form-button">Apply</button>
             </div>
           </div>
         </div>
