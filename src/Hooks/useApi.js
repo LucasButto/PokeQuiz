@@ -11,7 +11,6 @@ export const useApi = () => {
     setInfo(data);
     setHints(await hintsHandler(data));
   };
-  // TODO see why its call the api twice
 
   return {
     hints,

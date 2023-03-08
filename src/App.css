@@ -206,10 +206,18 @@ h3 {
   background-color: rgb(31, 31, 36);
   color: rgb(213, 213, 213);
   font-size: 1.2rem;
-  font-weight: 500;
   width: 80%;
   height: 40px;
   padding: 5px;
+}
+
+.show-hint {
+  background-color: rgba(14, 113, 22, 0.793);
+  transition: all 0.3s ease-in-out;
+}
+
+.show-hint::placeholder {
+  color: rgb(202, 202, 202);
 }
 
 .buttons-container {
