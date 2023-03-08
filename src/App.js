@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import logo from "./Img/logo.png";
 import { useApi } from "./Hooks/useApi.js";
@@ -11,26 +11,75 @@ function App() {
 
   const [input, setInput] = useState("");
   const [score, setScore] = useState(0);
-  const [best, setBest] = useState(5);
+  const [best, setBest] = useState(0);
   const [trys, setTrys] = useState(0);
   const [statusImg, setStatusImg] = useState(false);
+
   const [modalStyles, setModalStyles] = useState("modal - hide-modal");
+  const [inputStyles, setInputStyles] = useState("form-input");
+  const [skipButton, setSkipButton] = useState(true);
+  const [nextButtonStyles, setNextButtonStyles] = useState(
+    "disabled form-button"
+  );
+
+  useEffect(() => {
+    if (score > best) {
+      setBest(score);
+    }
+  }, [score, best]);
 
   const answerButtonHandler = () => {
     if (input === info.name) {
       setScore(score + 1);
       setStatusImg(true);
+      setNextButtonStyles("form-button");
+      setSkipButton(false);
     } else {
       setTrys(trys + 1);
       setStatusImg(false);
+      setInput("");
+    }
+
+    if (trys >= 3) {
+      setTrys(0);
+      setScore(0);
+      setStatusImg(true);
+      setInput("");
+      setInputStyles("form-input input-disabled");
     }
   };
+
+  const enterPressed = (e) => {
+    if (e.key === "Enter") {
+      if (input !== "") {
+        if (statusImg === false) {
+          answerButtonHandler();
+        }
+      }
+    }
+  };
+
+  window.onkeydown = enterPressed;
 
   const newPokemonButtonHandler = () => {
     setNewRequest(!newRequest);
     setStatusImg(false);
     setInput("");
+    setScore(0);
+    setTrys(0);
+    setInputStyles("form-input");
   };
+
+  const nextPokemonButtonHandler = () => {
+    setNewRequest(!newRequest);
+    setStatusImg(false);
+    setInput("");
+    setTrys(0);
+    setNextButtonStyles("form-button disabled");
+    setSkipButton(true);
+  };
+
+  //TODO settings logic
 
   const openModalHandler = () => {
     setModalStyles("modal");
@@ -65,7 +114,7 @@ function App() {
             <h2>Loading...</h2>
           )}
 
-          {statusImg ? <p className="pokemon-name">{input}</p> : null}
+          {statusImg ? <p className="pokemon-name">{info.name}</p> : null}
         </div>
         <div className="options-container">
           <h3>Enter your answer</h3>
@@ -75,14 +124,17 @@ function App() {
               onChange={(e) => setInput(e.target.value)}
               type="text"
               placeholder="Insert the pokemon's name..."
-              className="form-input"
+              className={inputStyles}
             />
-            <button className="form-button" onClick={answerButtonHandler}>
+            <button
+              className={statusImg ? "form-button disabled" : "form-button"}
+              onClick={answerButtonHandler}
+            >
               Go!
             </button>
           </div>
           <div className="hints">
-            {trys === 1 ? (
+            {trys >= 1 ? (
               <input
                 type="text"
                 placeholder={"His name has " + hints.letters + " letters"}
@@ -97,7 +149,7 @@ function App() {
                 disabled
               />
             )}
-            {trys === 2 ? (
+            {trys >= 2 ? (
               <input
                 type="text"
                 placeholder={"It's a " + hints.type + " pokemon"}
@@ -112,7 +164,7 @@ function App() {
                 disabled
               />
             )}
-            {trys === 3 ? (
+            {trys >= 3 ? (
               <input
                 type="text"
                 placeholder={"It's a pokemon from " + hints.gen}
@@ -128,9 +180,20 @@ function App() {
               />
             )}
           </div>
-          <button className="form-button" onClick={newPokemonButtonHandler}>
-            Skip!
-          </button>
+          <div className="buttons-container">
+            <button
+              className={skipButton ? "form-button" : "form-button disabled"}
+              onClick={newPokemonButtonHandler}
+            >
+              Skip!
+            </button>
+            <button
+              className={nextButtonStyles}
+              onClick={nextPokemonButtonHandler}
+            >
+              Next!
+            </button>
+          </div>
         </div>
       </div>
       <div className={modalStyles}>

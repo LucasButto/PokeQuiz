@@ -66,6 +66,7 @@
   padding: 30px;
   gap: 20px;
 }
+
 .img-container {
   display: flex;
   flex-direction: column;
@@ -102,6 +103,12 @@
   100% {
     filter: brightness(1);
   }
+}
+
+.pokemon-name {
+  font-size: 2rem;
+  font-weight: 900;
+  color: rgb(31, 31, 36);
 }
 
 .options-container {
@@ -146,6 +153,11 @@ h3 {
   color: rgb(213, 213, 213);
 }
 
+.input-disabled {
+  pointer-events: none;
+  background-color: rgba(31, 31, 36, 0.52);
+}
+
 .form-input:focus {
   outline: none;
 }
@@ -165,6 +177,11 @@ h3 {
 .form-button:hover {
   cursor: pointer;
   background-color: rgb(32, 45, 116);
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: rgba(13, 19, 54, 0.595);
 }
 
 .hints {
@@ -189,6 +206,15 @@ h3 {
   width: 80%;
   height: 40px;
   padding: 5px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
 }
 
 .modal {
