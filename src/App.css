@@ -17,6 +17,31 @@
   width: 100%;
 }
 
+.settings-button {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  left: 0;
+  margin-left: 50px;
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(194, 40, 40);
+  color: rgb(213, 213, 213);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.settings-button:hover {
+  cursor: pointer;
+  background-color: rgb(255, 0, 0);
+}
+
+.settings-button:focus {
+  transform: scale(0.9);
+}
+
 .score {
   position: absolute;
   right: 0;
@@ -164,4 +189,127 @@ h3 {
   width: 80%;
   height: 40px;
   padding: 5px;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: openModal 0.3s ease-in-out;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.hide-modal {
+  display: none;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
+  background-color: rgb(31, 31, 36);
+  padding: 0 20px 20px 20px;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 20%;
+  gap: 20px;
+}
+
+.modal-header > h2 {
+  color: rgb(213, 213, 213);
+}
+
+.close-modal-button {
+  right: 0;
+  border: none;
+  color: rgb(186, 0, 0);
+  background-color: transparent;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.close-modal-button:hover {
+  cursor: pointer;
+  color: rgb(255, 0, 0);
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+  border-radius: 5px;
+  background-color: rgba(90, 90, 90, 0.662);
+}
+
+.settings-gens {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.settings-gens > h4 {
+  margin: 20px auto;
+  color: rgb(165, 255, 175);
+  font-weight: 500;
+}
+
+.generations {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100px;
+  gap: 20px;
+}
+
+.generation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: rgb(213, 213, 213);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.checkbox-input {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  border: 1px solid rgb(213, 213, 213);
+  background-color: rgb(31, 31, 36);
 }
