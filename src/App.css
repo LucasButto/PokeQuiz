@@ -102,6 +102,16 @@
   font-size: 2rem;
   font-weight: 900;
   color: rgb(31, 31, 36);
+  animation: fade-in 1s ease-in-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .options-container {

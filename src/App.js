@@ -6,14 +6,15 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 function App() {
-  const { info, hints, setNewRequest, newRequest } = useApi();
-  const pokemonImg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${info.id}.png`;
+  const { info, hints, getData } = useApi();
 
   const [input, setInput] = useState("");
   const [score, setScore] = useState(0);
   const [best, setBest] = useState(0);
   const [trys, setTrys] = useState(0);
   const [statusImg, setStatusImg] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [newRequest, setNewRequest] = useState(false);
 
   const [modalStyles, setModalStyles] = useState("modal - hide-modal");
   const [inputStyles, setInputStyles] = useState("form-input");
@@ -21,6 +22,17 @@ function App() {
   const [nextButtonStyles, setNextButtonStyles] = useState(
     "disabled form-button"
   );
+
+  const pokemonImg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${info.id}.png`;
+
+  useEffect(() => {
+    setLoading(true);
+    let randomPokemon = Math.floor(Math.random() * 898) + 1;
+    getData(randomPokemon);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [newRequest]);
 
   useEffect(() => {
     //TODO save in LocalStorage
@@ -62,13 +74,16 @@ function App() {
 
   window.onkeydown = enterPressed;
 
-  const newPokemonButtonHandler = () => {
-    setNewRequest(!newRequest);
-    setStatusImg(false);
-    setInput("");
-    setScore(0);
-    setTrys(0);
-    setInputStyles("form-input");
+  const skipPokemonButtonHandler = () => {
+    setStatusImg(true);
+    setTimeout(() => {
+      setNewRequest(!newRequest);
+      setStatusImg(false);
+      setInput("");
+      setScore(0);
+      setTrys(0);
+      setInputStyles("form-input");
+    }, 2000);
   };
 
   const nextPokemonButtonHandler = () => {
@@ -105,14 +120,14 @@ function App() {
       <main className="quiz-container">
         <div className="img-container">
           <h3>¿Who's that pokemon?</h3>
-          {info ? (
+          {loading ? (
+            <h2>Loading...</h2>
+          ) : (
             <img
               className={"pokemon-img " + (statusImg ? "show" : "hiden")}
               src={pokemonImg}
               alt="Pokemon"
             />
-          ) : (
-            <h2>Loading...</h2>
           )}
           {statusImg ? <p className="pokemon-name">{info.name}</p> : null}
         </div>
@@ -183,7 +198,7 @@ function App() {
           <div className="buttons-container">
             <button
               className={skipButton ? "form-button" : "form-button disabled"}
-              onClick={newPokemonButtonHandler}
+              onClick={skipPokemonButtonHandler}
             >
               Skip!
             </button>
