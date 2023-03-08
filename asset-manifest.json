@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/pokequiz/static/css/main.dac14c35.css",
+    "main.js": "/pokequiz/static/js/main.879d3e3d.js",
+    "static/media/logo.png": "/pokequiz/static/media/logo.b63a416c0efdd0fd7924.png",
+    "index.html": "/pokequiz/index.html",
+    "main.dac14c35.css.map": "/pokequiz/static/css/main.dac14c35.css.map",
+    "main.879d3e3d.js.map": "/pokequiz/static/js/main.879d3e3d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dac14c35.css",
+    "static/js/main.879d3e3d.js"
+  ]
+}
