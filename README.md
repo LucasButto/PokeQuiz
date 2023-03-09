@@ -3,6 +3,7 @@
 This is a React-based game project where you have to guess the name of a Pokémon from its silhouette. The project comes with custom settings where you can choose the regions you want to play with and it saves your best score in localstorage.
 
 ## How to play
+
 To start playing, simply look at the Pokémon's silhouette on the left side of the screen and type its name in the text field that appears to the right of the silhouette. If you type the correct name, you will score a point and move on to the next Pokémon. If you type the wrong name, the score counter will be reset and you will have to try again.
 
 If you fail to type the Pokémon's name, a clue will be revealed to help you guess. You have up to three clues for each Pokémon, and if you still can't guess the name after the third clue, the score counter will be reset and you will move on to the next Pokémon.
@@ -41,7 +42,7 @@ This project was created by [your name here]. Feel free to clone and modify the 
 ## Screenshot
 
 <p align="center">
-  <img src="./src/img/proj.jpg" width="600" height="400">
+  <img src="./src/Img/proj.jpg" width="600" height="400">
 </p>
 
 ## Test Project
