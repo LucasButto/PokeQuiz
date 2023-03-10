@@ -141,10 +141,6 @@ function App() {
     setNewRequest(!newRequest);
   };
 
-  const allData = () => {
-    getData(778);
-  };
-
   return (
     <div className="app">
       <header className="app-header">
@@ -363,9 +359,6 @@ function App() {
               </div>
               <button className="form-button" onClick={applyChangesHandler}>
                 Apply
-              </button>
-              <button className="form-button" onClick={allData}>
-                all
               </button>
             </div>
           </div>
