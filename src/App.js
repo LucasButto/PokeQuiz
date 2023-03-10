@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
-import "./App.css";
-import logo from "./Img/logo.png";
 import { useApi } from "./Hooks/useApi.js";
 import { SelectedGenId } from "./Logic/SelectedGenId";
+
+import "./App.css";
+import logo from "./Img/logo.png";
+
 import SettingsIcon from "@mui/icons-material/Settings";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { MagnifyingGlass } from "react-loader-spinner";
 
 function App() {
   const { info, hints, getData } = useApi();
@@ -154,7 +157,16 @@ function App() {
         <div className="img-container">
           <h3>¿Who's that pokemon?</h3>
           {loading ? (
-            <h2>Loading...</h2>
+            <MagnifyingGlass
+              visible={true}
+              height="300"
+              width="300"
+              ariaLabel="MagnifyingGlass-loading"
+              wrapperStyle={{}}
+              wrapperClass="MagnifyingGlass-wrapper"
+              glassColor="#c0efff"
+              color="#e15b64"
+            />
           ) : (
             <img
               className={"pokemon-img " + (statusImg ? "show" : "hiden")}
@@ -165,7 +177,7 @@ function App() {
           {statusImg ? <p className="pokemon-name">{info.name}</p> : null}
         </div>
         <div className="options-container">
-          <h3>Enter your answer</h3>
+          <h3 className="options-title">Enter your answer</h3>
           <div className="form-container">
             <input
               value={input}
